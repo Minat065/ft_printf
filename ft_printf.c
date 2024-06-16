@@ -49,8 +49,11 @@ int ft_printf(const char *format, ...)
   return (0);
 }
 
-// int main()
-// {
-//   ft_printf("Hello, %s! %d %c %x %X %p\n", "world", 42, 'a', 42, 42, 42);
-//   return (0);
-// }
+int main()
+{
+  int a = 42;
+
+  ft_printf("Hello, %s! %d %c %x %X %p\n", "world", a, '!', 42, 42, &a);
+  printf("Hello, %s! %d %c %x %X %p\n", "world", a, '!', 42, 42, &a);
+  return (0);
+}
