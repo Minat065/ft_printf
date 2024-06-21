@@ -6,7 +6,7 @@
 /*   By: mirokugo <mirokugo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:31:59 by mirokugo          #+#    #+#             */
-/*   Updated: 2024/06/20 12:20:34 by mirokugo         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:31:23 by mirokugo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,35 @@ void	ft_putnbr_base(int n, char *base)
 	ft_putchar_fd(base[n % ft_strlen(base)], 1);
 }
 
+void	ptr_to_hex(void *ptr, char *buffer)
+{
+	unsigned long	addr;
+	char			temp[sizeof(void *) * 2 + 1];
+	int				digit;
+	int				i;
+	int				start;
+
+	i = 0;
+	start = 0;
+	addr = (unsigned long)ptr;
+	while (i < (int)sizeof(void *) * 2)
+	{
+		digit = (addr >> ((sizeof(void *) * 2 - 1 - i) * 4)) & 0xf;
+		temp[i] = digit < 10 ? '0' + digit : 'a' + digit - 10;
+		i++;
+	}
+	temp[i] = '\0';
+	while (temp[start] == '0' && start < (int)sizeof(void *) * 2 - 1)
+	{
+		start++;
+	}
+	strlcpy(buffer, temp + start, sizeof(void *) * 2 - start + 1);
+}
+
 void	ft_exist_formt(const char *format, va_list ap)
 {
+	char	buffer[16];
+
 	if (*format == 'd')
 		ft_putnbr_fd(va_arg(ap, int), 1);
 	else if (*format == 's')
@@ -41,15 +68,18 @@ void	ft_exist_formt(const char *format, va_list ap)
 	else if (*format == 'p')
 	{
 		ft_putstr_fd("0x", 1);
-		ft_putnbr_base(va_arg(ap, unsigned long), "0123456789abcdef");
+		ptr_to_hex(va_arg(ap, void *), buffer);
+		ft_putstr_fd(buffer, 1);
 	}
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
+	int		return_value;
 
 	va_start(ap, format);
+	return_value = 0;
 	while (*format)
 	{
 		if (*format == '%')
@@ -60,9 +90,10 @@ int	ft_printf(const char *format, ...)
 		else
 			ft_putchar_fd(*format, 1);
 		format++;
+		return_value++;
 	}
 	va_end(ap);
-	return (0);
+	return (return_value);
 }
 
 // int	main(void)
@@ -88,6 +119,5 @@ int	ft_printf(const char *format, ...)
 // 	printf("test7\n");
 // 	ft_printf("%%\n");
 // 	printf("%%\n");
-
 // 	return (0);
 // }
