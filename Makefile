@@ -16,19 +16,12 @@ NAME = libftprintf.a
 NAME-libft = libft.a
 AR = ar
 ARFLAGS = rc
-SRCS = ft_printf.c
-SRCS-libft = $(wildcard libft/*.c)
+SRCS = ft_printf.c $(wildcard ./libft/*.c)
 OBJS = $(SRCS:.c=.o)
-OBJS-libft = $(SRCS-libft:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(NAME-libft)
-	$(AR) $(ARFLAGS) $@ $^
-
-libft: $(NAME-libft)
-
-$(NAME-libft): $(OBJS-libft)
+$(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
 %.o: %.c
