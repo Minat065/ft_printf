@@ -10,28 +10,36 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-NAME-libft = libft.a
+LIBFT_DIR = ./srcs
+LIBFT = $(LIBFT_DIR)/libft.a
+NAME-libft = srcs/libft.a
 AR = ar
 ARFLAGS = rc
-SRCS = ft_printf.c $(wildcard ./libft/*.c)
+SRCS = ft_printf.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+$(NAME): $(LIBFT) $(OBJS)
+	cp $(LIBFT) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)	$(OBJS-libft)
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME) $(NAME-libft)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean
 
