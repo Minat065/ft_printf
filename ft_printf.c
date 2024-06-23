@@ -6,7 +6,7 @@
 /*   By: mirokugo <mirokugo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:31:59 by mirokugo          #+#    #+#             */
-/*   Updated: 2024/06/23 18:21:00 by mirokugo         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:43:56 by mirokugo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ptr_to_hex(void *ptr, char *buffer)
 	i = 0;
 	start = 0;
 	addr = (unsigned long)ptr;
-	while (i < (int)sizeof(void *) * 2)
+	while (i < (int) sizeof(void *) * 2)
 	{
 		digit = (addr >> ((sizeof(void *) * 2 - 1 - i) * 4)) & 0xf;
 		if (digit < 10)
@@ -45,7 +45,7 @@ void	ptr_to_hex(void *ptr, char *buffer)
 		i++;
 	}
 	temp[i] = '\0';
-	while (temp[start] == '0' && start < (int)sizeof(void *) * 2 - 1)
+	while (temp[start] == '0' && start < (int) sizeof(void *) * 2 - 1)
 		start++;
 	strlcpy(buffer, temp + start, sizeof(void *) * 2 - start + 1);
 }
