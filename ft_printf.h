@@ -6,7 +6,7 @@
 /*   By: mirokugo <mirokugo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:30:52 by mirokugo          #+#    #+#             */
-/*   Updated: 2024/06/23 18:21:10 by mirokugo         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:54:36 by mirokugo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "./srcs/libft.h"
 # include <stdarg.h>
 
-void	ft_putnbr_base(int n, char *base, int *count_char);
+void	ft_putnbr_base(unsigned int n, char *base, int *count_char);
 int		ft_printf(const char *format, ...);
 
 #endif

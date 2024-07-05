@@ -6,22 +6,19 @@
 /*   By: mirokugo <mirokugo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:31:59 by mirokugo          #+#    #+#             */
-/*   Updated: 2024/06/23 18:43:56 by mirokugo         ###   ########.fr       */
+/*   Updated: 2024/07/05 21:28:25 by mirokugo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_base(int n, char *base, int *count_char)
+void ft_putnbr_base(unsigned int n, char *base, int *count_char)
 {
-	if (n < 0)
-	{
-		ft_putchar_fd('-', 1, count_char);
-		n = -n;
-	}
-	if (n >= ft_strlen(base))
-		ft_putnbr_base(n / ft_strlen(base), base, count_char);
-	ft_putchar_fd(base[n % ft_strlen(base)], 1, count_char);
+    unsigned int base_len = ft_strlen(base);
+
+    if (n >= base_len)
+        ft_putnbr_base(n / base_len, base, count_char);
+    ft_putchar_fd(base[n % base_len], 1, count_char);
 }
 
 void	ptr_to_hex(void *ptr, char *buffer)
@@ -47,21 +44,31 @@ void	ptr_to_hex(void *ptr, char *buffer)
 	temp[i] = '\0';
 	while (temp[start] == '0' && start < (int) sizeof(void *) * 2 - 1)
 		start++;
-	strlcpy(buffer, temp + start, sizeof(void *) * 2 - start + 1);
+	ft_strlcpy(buffer, temp + start, sizeof(void *) * 2 - start + 1);
 }
 
 void	ft_exist_formt(const char *format, va_list ap, int *count_char)
 {
 	char	buffer[16];
+	char	*str;
+	void	*ptr;
 
-	if (*format == 'd')
+	if (*format == 'd' || *format == 'i')
 		ft_putnbr_fd(va_arg(ap, int), 1, count_char);
 	else if (*format == 's')
-		ft_putstr_fd(va_arg(ap, char *), 1, count_char);
+	{
+		str = va_arg(ap, char *);
+		if (str == NULL)
+			ft_putstr_fd("(null)", 1, count_char);
+		else
+			ft_putstr_fd(str, 1, count_char);
+	}
 	else if (*format == 'c')
 		ft_putchar_fd(va_arg(ap, int), 1, count_char);
 	else if (*format == '%')
 		ft_putchar_fd('%', 1, count_char);
+	else if (*format == 'u')
+		ft_putnbr_base(va_arg(ap, unsigned int), "0123456789", count_char);
 	else if (*format == 'x')
 		ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef",
 			count_char);
@@ -70,9 +77,15 @@ void	ft_exist_formt(const char *format, va_list ap, int *count_char)
 			count_char);
 	else if (*format == 'p')
 	{
-		ft_putstr_fd("0x", 1, count_char);
-		ptr_to_hex(va_arg(ap, void *), buffer);
-		ft_putstr_fd(buffer, 1, count_char);
+		ptr = va_arg(ap, void *);
+		if (ptr == NULL)
+			ft_putstr_fd("(nil)", 1, count_char);
+		else
+		{
+			ft_putstr_fd("0x", 1, count_char);
+			ptr_to_hex(ptr, buffer);
+			ft_putstr_fd(buffer, 1, count_char);
+		}
 	}
 }
 
@@ -101,7 +114,7 @@ int	ft_printf(const char *format, ...)
 // int	main(void)
 // {
 // 	printf("test1\n");
-// 	printf("printf: %d\n", printf("printf: %d\n", 42));
-// 	printf("ft_printf: %d\n", ft_printf("ft_printf: %d\n", 42));
+// 	printf("printf: %d\n", printf("Hello, %s\n", "world"));
+// 	printf("ft_printf: %d\n", ft_printf("Hello, %s\n", "world"));
 // 	return (0);
 // }
