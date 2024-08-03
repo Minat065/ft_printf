@@ -6,19 +6,22 @@
 /*   By: mirokugo <mirokugo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:31:59 by mirokugo          #+#    #+#             */
-/*   Updated: 2024/07/05 21:28:25 by mirokugo         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:22:16 by mirokugo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_putnbr_base(unsigned int n, char *base, int *count_char)
+void	ft_putnbr_base(unsigned int n, char *base, int *count_char)
 {
-    unsigned int base_len = ft_strlen(base);
+	unsigned int	base_len;
 
-    if (n >= base_len)
-        ft_putnbr_base(n / base_len, base, count_char);
-    ft_putchar_fd(base[n % base_len], 1, count_char);
+	base_len = ft_strlen(base);
+	if (n >= base_len)
+	{
+		ft_putnbr_base(n / base_len, base, count_char);
+		ft_putchar_fd(base[n % base_len], 1, count_char);
+	}
 }
 
 void	ptr_to_hex(void *ptr, char *buffer)
@@ -111,10 +114,10 @@ int	ft_printf(const char *format, ...)
 	return (count_char);
 }
 
-// int	main(void)
-// {
-// 	printf("test1\n");
-// 	printf("printf: %d\n", printf("Hello, %s\n", "world"));
-// 	printf("ft_printf: %d\n", ft_printf("Hello, %s\n", "world"));
-// 	return (0);
-// }
+int	main(void)
+{
+	printf("test1\n");
+	printf("printf: %d\n", printf("Hello, %s\n", "world"));
+	printf("ft_printf: %d\n", ft_printf("Hello, %s\n", "world"));
+	return (0);
+}
