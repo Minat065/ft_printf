@@ -162,7 +162,8 @@ int	ft_printf(const char *format, ...)
 
 // 	printf("Test 1-4 null_check\n");
 // 	return_value_printf = printf("printf: %d\n", (int)(__intptr_t)NULL);
-// 	return_value_ft_printf = ft_printf("ft_printf: %d\n", (int)(__intptr_t)NULL);
+// 	return_value_ft_printf = ft_printf("ft_pri
+//	ntf: %d\n", (int)(__intptr_t)NULL);
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
@@ -196,8 +197,10 @@ int	ft_printf(const char *format, ...)
 // 	printf("\n");
 
 // 	printf("Test 3-3 long_string\n");
-// 	return_value_printf = printf("printf: %s\n", "congratulations! you passed the test!");
-// 	return_value_ft_printf = ft_printf("ft_printf: %s\n", "congratulations! you passed the test!");
+// 	return_value_printf = printf("printf: %s\n", "cong
+// 	ratulations! you passed the test!");
+// 	return_value_ft_printf = ft_printf("ft_printf: %s\n", "cong
+// 	ratulations! you passed the test!");
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
@@ -211,7 +214,8 @@ int	ft_printf(const char *format, ...)
 
 // 	printf("Test 4-1 null_check\n");
 // 	return_value_printf = printf("printf: %c\n", (char)(__intptr_t)NULL);
-// 	return_value_ft_printf = ft_printf("ft_printf: %c\n", (char)(__intptr_t)NULL);
+// 	return_value_ft_printf = ft_printf("ft_printf: %c\n", 
+//	(char)(__intptr_t)NULL);
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
@@ -259,8 +263,10 @@ int	ft_printf(const char *format, ...)
 // 	printf("\n");
 
 // 	printf("Test 6-3 null_check\n");
-// 	return_value_printf = printf("printf: %u\n", (unsigned int)(__intptr_t)NULL);
-// 	return_value_ft_printf = ft_printf("ft_printf: %u\n", (unsigned int)(__intptr_t)NULL);
+// 	return_value_printf = printf("printf: %u\n", 
+//	(unsigned int)(__intptr_t)NULL);
+// 	return_value_ft_printf = ft_printf("ft_printf: %u\n", 
+//	(unsigned int)(__intptr_t)NULL);
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
@@ -315,8 +321,10 @@ int	ft_printf(const char *format, ...)
 // 	printf("\n");
 
 // 	printf("Test 7-3 null_check\n");
-// 	return_value_printf = printf("printf: %x\n", (unsigned int)(__intptr_t)NULL);
-// 	return_value_ft_printf = ft_printf("ft_printf: %x\n", (unsigned int)(__intptr_t)NULL);
+// 	return_value_printf = printf("printf: %x\n", 
+//	(unsigned int)(__intptr_t)NULL);
+// 	return_value_ft_printf = ft_printf("ft_printf: %x\n", 
+//	(unsigned int)(__intptr_t)NULL);
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
@@ -371,8 +379,10 @@ int	ft_printf(const char *format, ...)
 // 	printf("\n");
 
 // 	printf("Test 8-3 null_check\n");
-// 	return_value_printf = printf("printf: %X\n", (unsigned int)(__intptr_t)NULL);
-// 	return_value_ft_printf = ft_printf("ft_printf: %X\n", (unsigned int)(__intptr_t)NULL);
+// 	return_value_printf = printf("printf: %X\n", 
+//	(unsigned int)(__intptr_t)NULL);
+// 	return_value_ft_printf = ft_printf("ft_printf: %X\n", 
+//	(unsigned int)(__intptr_t)NULL);
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
@@ -427,15 +437,19 @@ int	ft_printf(const char *format, ...)
 // 	printf("\n");
 
 // 	printf("Test 9-3 long_string\n");
-// 	return_value_printf = printf("printf: %p\n", "congratulations! you passed the test!");
-// 	return_value_ft_printf = ft_printf("ft_printf: %p\n", "congratulations! you passed the test!");
+// 	return_value_printf = printf("printf: %p\n", 
+//	"congratulations! you passed the test!");
+// 	return_value_ft_printf = ft_printf("ft_printf: %p\n", 
+//	"congratulations! you passed the test!");
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 // 	printf("\n");
 
 // 	printf("Test 10 (all pattern is mixed)\n");
-// 	return_value_printf = printf("printf: %d %i %s %c %%%u %x %X %p\n", 42, 42, "42tokyo", '4', 42, 42, 42, &return_value_printf);
-// 	return_value_ft_printf = ft_printf("ft_printf: %d %i %s %c %%%u %x %X %p\n", 42, 42, "42tokyo", '4', 42, 42, 42, &return_value_ft_printf);
+// 	return_value_printf = printf("printf: %d %i %s %c %%%u %x %X 
+//	%p\n", 42, 42, "42tokyo", '4', 42, 42, 42, &return_value_printf);
+// 	return_value_ft_printf = ft_printf("ft_printf: %d %i %s %c %%%u
+//	 %x %X %p\n", 42, 42, "42tokyo", '4', 42, 42, 42, &return_value_ft_printf);
 // 	printf("return_value_printf: %d\n", return_value_printf);
 // 	printf("return_value_ft_printf: %d\n", return_value_ft_printf - 3);
 
