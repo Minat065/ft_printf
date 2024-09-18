@@ -18,5 +18,6 @@
 
 void	ft_putnbr_base(unsigned int n, char *base, int *count_char);
 int		ft_printf(const char *format, ...);
+int     ft_printf(const char *format, ...);
 
 #endif
